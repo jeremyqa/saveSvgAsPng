@@ -17,9 +17,10 @@
     return url && url.lastIndexOf('http',0) == 0 && url.lastIndexOf(window.location.host) == -1;
   }
 
-  function inlineImages(el, callback) {
+  function inlineImages(parent_el, callback) {
+    // todo: make this work if passed an svg
+    var el = parent_el.getElementsByTagName('svg')[0];
     requireDomNode(el);
-
     var images = el.querySelectorAll('image'),
         left = images.length,
         checkDone = function() {
