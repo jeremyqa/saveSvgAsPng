@@ -485,9 +485,11 @@
     requireDomNode(el);
 
     options = options || {};
-    out$.svgAsPngUri(el, options, function(uri) {
-      out$.download(name, uri);
-    });
+    return new Promise((resolve, reject) => {
+        out$.svgAsPngUri(el, options, function(uri) {
+        out$.download(name, uri);
+        return resolve();
+    })});
   }
 
   // if define is defined create as an AMD module
