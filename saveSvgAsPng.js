@@ -262,16 +262,15 @@
     return decodeURIComponent(data);
   }
 
-  out$.prepareSvg = function(el, options, cb) {
-    requireDomNode(el);
-
+  out$.prepareSvg = function(parent_el, options, cb) {
+    requireDomNode(parent_el);
+    var el = parent_el.getElementsByTagName('svg')[0];
     options = options || {};
     options.scale = options.scale || 1;
     options.responsive = options.responsive || false;
     var xmlns = "http://www.w3.org/2000/xmlns/";
 
-    inlineImages(parent_el, function() {
-      var el = parent_el.getElementsByTagName('svg')[0];
+    inlineImages(el, function() {
       var outer = document.createElement("div");
       var clone = el.cloneNode(true);
       var width, height;
