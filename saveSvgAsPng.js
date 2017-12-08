@@ -17,9 +17,7 @@
     return url && url.lastIndexOf('http',0) == 0 && url.lastIndexOf(window.location.host) == -1;
   }
 
-  function inlineImages(parent_el, callback) {
-    // todo: make this work if passed an svg
-    var el = parent_el.getElementsByTagName('svg')[0];
+  function inlineImages(el, callback) {
     requireDomNode(el);
     var images = el.querySelectorAll('image'),
         left = images.length,
@@ -272,7 +270,8 @@
     options.responsive = options.responsive || false;
     var xmlns = "http://www.w3.org/2000/xmlns/";
 
-    inlineImages(el, function() {
+    inlineImages(parent_el, function() {
+      var el = parent_el.getElementsByTagName('svg')[0];
       var outer = document.createElement("div");
       var clone = el.cloneNode(true);
       var width, height;
