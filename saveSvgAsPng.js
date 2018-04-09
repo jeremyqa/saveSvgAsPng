@@ -484,7 +484,7 @@ function foo() {
     requireDomNode(el);
 
     options = options || {};
-    return new Promise((resolve, reject) => {
+    return new Promise(function(resolve, reject){
         out$.svgAsPngUri(el, options, function(uri) {
         out$.download(name, uri);
         return resolve();
